@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import com.combatecdz.model.Usuario;
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -28,6 +29,7 @@ public class UsuarioDAO {
     public boolean inserirUsuario(Usuario usuario) {
         try {
             em.persist(usuario);
+            em.flush();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,4 +46,10 @@ public class UsuarioDAO {
             return false;
         }
     }
+
+    public List<Usuario> getTodosUsuarios() {        
+        return em.createQuery("from Usuario u", Usuario.class).getResultList();        
+    }
+    
+    
 }
