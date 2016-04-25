@@ -28,8 +28,10 @@ public class UsuarioDAO {
 
     public boolean inserirUsuario(Usuario usuario) {
         try {
+            em.getTransaction().begin();
             em.persist(usuario);
-            em.flush();
+            
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,7 +41,9 @@ public class UsuarioDAO {
 
     public boolean deletarUsuario(Usuario usuario) {
         try {
+            em.getTransaction().begin();
             em.remove(usuario);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

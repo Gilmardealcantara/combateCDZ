@@ -54,3 +54,24 @@ public class Usuario {
     }
 
 }
+
+/*
+create database combatecdz;
+
+use combatecdz;
+
+show tables;
+
+create table usuario(
+
+id int auto_increment primary key,
+
+nome varchar(250),
+
+    senha varchar(20)
+
+);
+
+insert into usuario(nome,senha) values ('laura',123);
+
+*/

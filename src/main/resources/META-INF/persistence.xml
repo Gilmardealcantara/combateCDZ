@@ -3,6 +3,8 @@
   <persistence-unit name="persistencia" transaction-type="JTA">
     <jta-data-source>java:app/dadosCDZ</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <validation-mode>NONE</validation-mode>
+    <properties>
+    </properties>
   </persistence-unit>
 </persistence>
