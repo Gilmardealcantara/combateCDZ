@@ -5,10 +5,32 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:p="http://primefaces.org/ui"> 
-    <h:head> </h:head> 
+    
+    <h:head> 
+        <link rel="stylesheet" href="css/footer.css"></link>
+        <link rel="stylesheet" href="css/header.css"></link>
+        <link rel="stylesheet" href="css/home.css"></link>
+    </h:head> 
+      <header>
+
+    <img id="img1" src='http://www.interne.com.br/novidades/images/fotos_materias/Dengue-aplicativo-paulista301215f1.jpg'>
+    </img>
+    <h1>Combate CDZ</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="">Listar Denúncias</a>
+        <a href="">Denunciar</a>
+        <a href="">Estatísticas por Caso</a>
+        <a href="">Estatísticas por Denúncia</a>
+    </nav>
+
+
+    </header>
     <h:body> 
         <h:form> 
-            Tela Gerenciar Cidadao
+              <div id ="container">
+                  <h1>Criar Novo Usuário</h1>
             <p:messages id="messages" /> 
             <p:panelGrid columns="2"> 
                 <p:outputLabel for="nomeUsuario" value="Nome Usuário:" /> 
@@ -17,6 +39,11 @@
                 <p:commandButton value="Salvar" icon="ui-icon-star" action="#{usuarioController.salvarUsuario}" ajax="false">
                 </p:commandButton> 
             </p:panelGrid> 
+              </div>
         </h:form> 
-    </h:body> </html>
+    </h:body>
+       <footer>
+       <img src="http://www.ebm.cefetmg.br/download/CEFET_nome.gif"></img>
+  </footer>
+</html>
 

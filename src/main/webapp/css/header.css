@@ -1,0 +1,59 @@
+h1{
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-size: 50px;
+}
+
+#img1{
+	height: 140px;
+	position: absolute;
+	left: 50px;
+	top: -45px;
+}
+
+header{
+	position: relative;
+}
+
+#b1{
+	right: 50px;
+	top:0px;
+}
+
+.button{
+	position: absolute;
+	display: block;
+	border-style: solid;
+	border-color: black;
+	border-radius: 5px;
+	width: 150px;
+	color: black;
+	background-color: #99FF99;
+	cursor: pointer;
+}
+
+header nav{
+	background-color: #FFCCCC;
+	display: flex;
+	text-align: center;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	border-style: solid;
+	border-width: 1.5px;
+}
+
+header a{
+	flex:1;
+	padding: 1em;
+	text-decoration: none;
+	border-style: solid;
+	border-width: 1.5px;
+	cursor: pointer;
+}
+
+header a:hover, a:link, a:visited, a:active{
+	color: black;
+}

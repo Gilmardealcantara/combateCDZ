@@ -1,0 +1,83 @@
+body{
+	font-family: 'Helvetica';
+}
+
+form input{
+	border-style: solid;
+	border-color: black;
+	border-width: 1.5px;
+	margin-bottom: 15px;
+	padding-top: 2.5px;
+	padding-bottom: 2.5px;
+}
+
+#numero{
+	margin-bottom: 50px;
+}
+
+#email{
+	width: 100%;
+}
+
+#nomecompleto{
+	width: 70%;
+}
+
+#cpf{
+	width:29.5%;
+}
+
+#cpf, #confsenha{
+	margin-left: 3px;
+}
+
+#senha, #confsenha{
+	width:49.75%;
+}
+
+form select{
+	margin-bottom: 15px;
+}
+
+#cidade{
+	width: 60%;
+}
+
+#cep{
+	width: 30%;
+	margin-left: 10px;
+}
+
+#rua{
+  width: 100%;
+}
+
+#complemento{
+	width: 40%;
+	margin-left: 75px;
+}
+
+form button{
+	float:right;
+	border-style: solid;
+	border-color: black;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 150px;
+	color: black;
+	background-color: #C0C0C0;
+	cursor: pointer;
+}
+
+#container{
+	background: #CAE1FF;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
+	border-style: solid;
+	border-width: 1.5px;
+	margin-left: 50px;
+	margin-right: 50px;
+}

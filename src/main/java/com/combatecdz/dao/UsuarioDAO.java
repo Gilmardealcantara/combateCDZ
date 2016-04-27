@@ -39,13 +39,16 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean deletarUsuario(Usuario usuario) {
+    public boolean deletarUsuario(int Id) {
         try {
             em.getTransaction().begin();
-            em.remove(usuario);
+            Usuario u = em.find(Usuario.class, Id);
+            em.remove(u);
             em.getTransaction().commit();
+            System.out.println("teste2");
             return true;
         } catch (Exception e) {
+            System.out.println("teste1");
             e.printStackTrace();
             return false;
         }

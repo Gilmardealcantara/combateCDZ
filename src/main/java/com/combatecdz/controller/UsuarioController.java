@@ -41,17 +41,36 @@ public class UsuarioController {
       UsuarioDAO u = new UsuarioDAO();
       u.inserirUsuario(this.getUsuario());
       return "visualizarcidadao";
-      
     }
     
-    public String excluirUsuario()
+    public String excluirUsuario(int ID)
     {
       UsuarioDAO u = new UsuarioDAO();
-      u.deletarUsuario(this.getUsuario());
+      //u.deletarUsuario(this.getUsuario());
+      u.deletarUsuario(ID);
       return "visualizarcidadao";  
     }
     //http://jamacedo.com/2010/06/crud-jsf-2-0-hibernate-exemplo-gerenciando-livros-2/
-
+    
+    public String prepararAlterarUsuario(Usuario us)
+    {
+      setUsuario(us);
+      return "alterarUsuario";
+      
+    }
+    
+    public String alterarUsuario()
+    {
+      Usuario alt = new Usuario();
+      alt.setId(usuario.getId());
+      alt.setNome(usuario.getNome());
+      alt.setSenha(usuario.getSenha());
+      UsuarioDAO u = new UsuarioDAO();
+      u.deletarUsuario(usuario.getId());
+      u.inserirUsuario(alt);
+      return "visualizarcidadao";
+    }
+    
     /**
      * @return the usuario
      */

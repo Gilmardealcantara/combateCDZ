@@ -1,0 +1,27 @@
+body{
+	font-family: 'Helvetica';
+}
+
+#b2{
+	right: 50px;
+	top:30px;
+}
+
+#container{
+	background: #CAE1FF;
+	padding-top: 1px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-style: solid;
+	border-width: 1.5px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.blank{
+	background: white;
+	border-style: solid;
+	border-width: 1.85px;
+	padding-left: 10px;
+}

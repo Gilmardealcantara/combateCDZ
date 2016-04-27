@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:p="http://primefaces.org/ui"> 
-    <h:head> 
+        <h:head> 
         <link rel="stylesheet" href="css/footer.css"></link>
         <link rel="stylesheet" href="css/header.css"></link>
         <link rel="stylesheet" href="css/home.css"></link>
@@ -29,18 +29,23 @@
     <h:body> 
         <div id ="container">
         <h:form> 
+            <h1>Atualizar Dados</h1>
             <p:messages id="messages" /> 
             <p:panelGrid columns="2"> 
                 <p:outputLabel for="nomeUsuario" value="Nome Usuário:" /> 
-                <p:inputText id="nomeUsuario" value="#{LoginMB.usuario.nome}" /> 
-                <p:outputLabel for="senha" value="Senha:" /> <p:password id="senha" value="#{LoginMB.usuario.senha}" /> 
-                <p:commandButton value="Entrar" icon="ui-icon-star" action="#{LoginMB.envia}" ajax="false">
+                <p:inputText id="nomeUsuario" value="#{usuarioController.usuario.nome}" /> 
+                <p:outputLabel for="senha" value="Senha:" />
+                <p:inputText id="senha" value="#{usuarioController.usuario.senha}" /> 
+                
+                <p:commandButton value="Atualizar" icon="ui-icon-star" action="#{usuarioController.alterarUsuario}" ajax="false">
                 </p:commandButton> 
             </p:panelGrid> 
         </h:form> 
         </div>
     </h:body> 
-       <footer>
+
+        
+   <footer>
        <img src="http://www.ebm.cefetmg.br/download/CEFET_nome.gif"></img>
   </footer>
 </html>
