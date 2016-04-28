@@ -35,6 +35,14 @@
             <p:panelGrid columns="2"> 
                 <p:outputLabel for="nomeUsuario" value="Nome Usuário:" /> 
                 <p:inputText id="nomeUsuario" value="#{usuarioController.usuario.nome}" /> 
+                
+                <p:outputLabel for="cpfUsuario" value="CPF:" /> 
+                <p:inputText id="cpfUsuario" value="#{usuarioController.usuario.cpf}" /> 
+                
+                <p:outputLabel for="emailUsuario" value="email" /> 
+                <p:inputText id="emailUsuario" value="#{usuarioController.usuario.email}" /> 
+                
+ 
                 <p:outputLabel for="senha" value="Senha:" /> <p:password id="senha" value="#{usuarioController.usuario.senha}" /> 
                 <p:commandButton value="Salvar" icon="ui-icon-star" action="#{usuarioController.salvarUsuario}" ajax="false">
                 </p:commandButton> 
