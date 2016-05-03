@@ -43,6 +43,19 @@
                 
                 <p:outputLabel for="senha" value="Senha:" />
                 <p:inputText id="senha" value="#{usuarioController.usuario.senha}" /> 
+ 
+                <p:outputLabel for="cepUsuario" value="CEP" /> 
+                <p:inputText id="cepUsuario" value="#{usuarioController.usuario.cep}" /> 
+
+                <p:outputLabel for="ruaUsuario" value="Rua" /> 
+                <p:inputText id="ruaUsuario" value="#{usuarioController.usuario.rua}" /> 
+
+                <p:outputLabel for="cidadeUsuario" value="Cidade" /> 
+                <p:inputText id="cidadeUsuario" value="#{usuarioController.usuario.cidade}" /> 
+
+                <p:outputLabel for="estadoUsuario" value="Estado" /> 
+                <p:inputText id="estadoUsuario" value="#{usuarioController.usuario.estado}" /> 
+                
                 
                 <p:commandButton value="Atualizar" icon="ui-icon-star" action="#{usuarioController.alterarUsuario}" ajax="false" style="margin-left:auto;margin-right:auto;">
                 </p:commandButton> 

@@ -43,6 +43,17 @@
                     <p:outputLabel for="emailUsuario" value="email" /> 
                     <p:inputText id="emailUsuario" value="#{usuarioController.usuario.email}" /> 
 
+                    <p:outputLabel for="cepUsuario" value="CEP" /> 
+                    <p:inputText id="cepUsuario" value="#{usuarioController.usuario.cep}" /> 
+
+                    <p:outputLabel for="ruaUsuario" value="Rua" /> 
+                    <p:inputText id="ruaUsuario" value="#{usuarioController.usuario.rua}" /> 
+
+                    <p:outputLabel for="cidadeUsuario" value="Cidade" /> 
+                    <p:inputText id="cidadeUsuario" value="#{usuarioController.usuario.cidade}" /> 
+
+                    <p:outputLabel for="estadoUsuario" value="Estado" /> 
+                    <p:inputText id="estadoUsuario" value="#{usuarioController.usuario.estado}" /> 
 
                     <p:outputLabel for="senha" value="Senha:" /> <p:password id="senha" value="#{usuarioController.usuario.senha}" /> 
                     <p:commandButton value="Salvar" icon="ui-icon-star" action="#{usuarioController.salvarUsuario}" ajax="false">

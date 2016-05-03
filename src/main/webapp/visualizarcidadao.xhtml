@@ -51,18 +51,43 @@
                 </f:facet>
                 <h:outputText value="#{usuario.cpf}" />
             </h:column>
-             <h:column>
+            <h:column>
                 <f:facet name="header">
                     <h:outputText value="Email"/>
                 </f:facet>
                 <h:outputText value="#{usuario.email}" />
             </h:column>
-              <h:column>
+
+            Endereco : 
+            <h:column>
                 <f:facet name="header">
-                    <h:outputText value="ID Localização"/>
+                    <h:outputText value="CEP"/>
                 </f:facet>
-                <h:outputText value="#{usuario.id_end}" />
+                <h:outputText value="#{usuario.cep}" />
             </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Rua"/>
+                </f:facet>
+                <h:outputText value="#{usuario.rua}" />
+            </h:column>            
+         
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Cidade"/>
+                </f:facet>
+                <h:outputText value="#{usuario.cidade}" />
+            </h:column>            
+         
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Estado"/>
+                </f:facet>
+                <h:outputText value="#{usuario.estado}" />
+            </h:column>            
+         
+
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Alterar"/>

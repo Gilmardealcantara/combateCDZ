@@ -68,7 +68,11 @@ public class UsuarioController {
       alt.setCpf(usuario.getCpf());
       alt.setEmail(usuario.getEmail());
       alt.setId_end(usuario.getId_end());
-      
+      alt.setCep(usuario.getCep());
+      alt.setRua(usuario.getRua());
+      alt.setCidade(usuario.getCidade());
+      alt.setEstado(usuario.getEstado());
+     
       UsuarioDAO u = new UsuarioDAO();
       u.deletarUsuario(usuario.getId());
       u.inserirUsuario(alt);
