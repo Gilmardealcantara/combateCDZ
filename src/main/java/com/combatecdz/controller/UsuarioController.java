@@ -38,75 +38,110 @@ public class UsuarioController {
         setUsuario(new Usuario());
         return "gerenciarUsuario";
     }
-    
-    public String salvarUsuario()
-    {
-      int flag = 0;
-      if( usuario.getCpf().length() != 11 )  {
-              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
-              flag = 1;
-      }
-      if( usuario.getEstado().length() != 2)  {
-          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
-          flag = 1;
-      }
-      if( usuario.getCep().length() != 8)  {
-          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
-          flag = 1;
-      }
-      String email = usuario.getEmail();
-      Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-      Matcher m = p.matcher(email);
-      boolean match = m.matches();
-      if(!match)  {
-          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Inválido", "Erro no Cadastro!"));
-          flag = 1;
-      }
-      if(flag == 1){
-          return null;
-      }else{
-        UsuarioDAO u = new UsuarioDAO();
-        u.inserirUsuario(this.getUsuario());
-        return "visualizarcidadao";
-      }
+
+    public String salvarUsuario() {
+        int flag = 0;
+        if (usuario.getEstado().isEmpty() || usuario.getCidade().isEmpty() || usuario.getRua().isEmpty()
+                || usuario.getCep().isEmpty() || usuario.getEmail().isEmpty() || usuario.getCpf().isEmpty()
+                || usuario.getSenha().isEmpty() || usuario.getNome().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
+            return null;
+        } else {
+            if (usuario.getCpf().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (usuario.getEstado().length() != 2) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (usuario.getCep().length() != 8) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            String email = usuario.getEmail();
+            Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+            Matcher m = p.matcher(email);
+            boolean match = m.matches();
+            if (!match) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (flag == 1) {
+                return null;
+            } else {
+                UsuarioDAO u = new UsuarioDAO();
+                u.inserirUsuario(this.getUsuario());
+                return "visualizarcidadao";
+            }
+        }
     }
-    
-    public String excluirUsuario(int ID)
-    {
-      UsuarioDAO u = new UsuarioDAO();
-      //u.deletarUsuario(this.getUsuario());
-      u.deletarUsuario(ID);
-      return "visualizarcidadao";  
+
+    public String excluirUsuario(int ID) {
+        UsuarioDAO u = new UsuarioDAO();
+        //u.deletarUsuario(this.getUsuario());
+        u.deletarUsuario(ID);
+        return "visualizarcidadao";
     }
     //http://jamacedo.com/2010/06/crud-jsf-2-0-hibernate-exemplo-gerenciando-livros-2/
-    
-    public String prepararAlterarUsuario(Usuario us)
-    {
-      setUsuario(us);
-      return "alterarUsuario";
-      
+
+    public String prepararAlterarUsuario(Usuario us) {
+        setUsuario(us);
+        return "alterarUsuario";
+
     }
-    
-    public String alterarUsuario()
-    {
-      Usuario alt = new Usuario();
-      alt.setId(usuario.getId());
-      alt.setNome(usuario.getNome());
-      alt.setSenha(usuario.getSenha());
-      alt.setCpf(usuario.getCpf());
-      alt.setEmail(usuario.getEmail());
-      alt.setId_end(usuario.getId_end());
-      alt.setCep(usuario.getCep());
-      alt.setRua(usuario.getRua());
-      alt.setCidade(usuario.getCidade());
-      alt.setEstado(usuario.getEstado());
-     
-      UsuarioDAO u = new UsuarioDAO();
-      u.deletarUsuario(usuario.getId());
-      u.inserirUsuario(alt);
-      return "visualizarcidadao";
+
+    public String alterarUsuario() {
+        Usuario alt = new Usuario();
+        alt.setId(usuario.getId());
+        alt.setNome(usuario.getNome());
+        alt.setSenha(usuario.getSenha());
+        alt.setCpf(usuario.getCpf());
+        alt.setEmail(usuario.getEmail());
+        alt.setId_end(usuario.getId_end());
+        alt.setCep(usuario.getCep());
+        alt.setRua(usuario.getRua());
+        alt.setCidade(usuario.getCidade());
+        alt.setEstado(usuario.getEstado());
+        int flag = 0;
+        if (alt.getEstado().isEmpty() || alt.getCidade().isEmpty() || alt.getRua().isEmpty()
+                || alt.getCep().isEmpty() || alt.getEmail().isEmpty() || alt.getCpf().isEmpty()
+                || alt.getSenha().isEmpty() || alt.getNome().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
+            return null;
+        } else {
+            if (alt.getCpf().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (alt.getEstado().length() != 2) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (alt.getCep().length() != 8) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            String email = alt.getEmail();
+            Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+            Matcher m = p.matcher(email);
+            boolean match = m.matches();
+            if (!match) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Inválido", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (flag == 1) {
+                return null;
+            } else {
+
+                UsuarioDAO u = new UsuarioDAO();
+                u.deletarUsuario(usuario.getId());
+                u.inserirUsuario(alt);
+                return "visualizarcidadao";
+            }
+        }
     }
-    
+
     /**
      * @return the usuario
      */
