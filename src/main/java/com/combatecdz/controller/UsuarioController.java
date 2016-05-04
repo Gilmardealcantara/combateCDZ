@@ -8,8 +8,12 @@ package com.combatecdz.controller;
 import com.combatecdz.dao.UsuarioDAO;
 import com.combatecdz.model.Usuario;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -37,10 +41,34 @@ public class UsuarioController {
     
     public String salvarUsuario()
     {
-        
-      UsuarioDAO u = new UsuarioDAO();
-      u.inserirUsuario(this.getUsuario());
-      return "visualizarcidadao";
+      int flag = 0;
+      if( usuario.getCpf().length() != 11 )  {
+              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+              flag = 1;
+      }
+      if( usuario.getEstado().length() != 2)  {
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
+          flag = 1;
+      }
+      if( usuario.getCep().length() != 8)  {
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
+          flag = 1;
+      }
+      String email = usuario.getEmail();
+      Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
+      Matcher m = p.matcher(email);
+      boolean match = m.matches();
+      if(!match)  {
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Inválido", "Erro no Cadastro!"));
+          flag = 1;
+      }
+      if(flag == 1){
+          return null;
+      }else{
+        UsuarioDAO u = new UsuarioDAO();
+        u.inserirUsuario(this.getUsuario());
+        return "visualizarcidadao";
+      }
     }
     
     public String excluirUsuario(int ID)
