@@ -45,7 +45,7 @@ public class DenunciaDAO {
         }
     }
 
-    public List<Denuncia> getTodosUsuarios() {        
+    public List<Denuncia> getTodasDenuncias() {        
         return em.createQuery("from Denuncia d", Denuncia.class).getResultList();        
     }
     
