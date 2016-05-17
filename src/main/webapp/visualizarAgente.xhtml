@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:p="http://primefaces.org/ui"> 
+
+        <h:head> 
+        <link rel="stylesheet" href="css/footer.css"></link>
+        <link rel="stylesheet" href="css/header.css"></link>
+        <link rel="stylesheet" href="css/home.css"></link>
+    </h:head> 
+      <header>
+
+    <img id="img1" src='http://www.interne.com.br/novidades/images/fotos_materias/Dengue-aplicativo-paulista301215f1.jpg'>
+    </img>
+    <h1>Combate CDZ</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="">Listar Denúncias</a>
+        <a href="">Denunciar</a>
+        <a href="">Estatísticas por Caso</a>
+        <a href="">Estatísticas por Denúncia</a>
+    </nav>
+
+
+    </header>
+    
+    <h:body>
+        <div id ="container">
+        <h:form>
+            <h:commandLink value="Novo Agente" action="#{agenteController.prepararAdicionarAgente}"/>
+        </h:form>
+        <h:dataTable var="Agente" style="margin-left:auto;margin-right:auto;" value="#{agenteController.agentes}">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:outputText value="#{agente.id}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                <h:outputText value="#{agente.nome}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="CPF"/>
+                </f:facet>
+                <h:outputText value="#{agente.cpf}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Email"/>
+                </f:facet>
+                <h:outputText value="#{agente.email}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Contratante"/>
+                </f:facet>
+                <h:outputText value="#{agente.contratante}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="PIS"/>
+                </f:facet>
+                <h:outputText value="#{agente.pis}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Região"/>
+                </f:facet>
+                <h:outputText value="#{agente.regiao}" />
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Alterar"/>
+                </f:facet>
+                <h:form>
+                    <h:commandButton action="#{agenteController.prepararAlterarAgente(agente)}" value="Alterar"/>
+                    </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Excluir"/>
+                </f:facet>
+                <h:form>
+                    <h:commandButton action="#{agenteController.excluirAgente(agente.id)}" value="Excluir"/>
+                    </h:form>
+            </h:column>
+            
+        </h:dataTable>
+        </div>
+    </h:body>
+    
+   <footer>
+       <img src="http://www.ebm.cefetmg.br/download/CEFET_nome.gif"></img>
+  </footer>
+</html>
+

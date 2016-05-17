@@ -16,7 +16,7 @@ public class AgenteDAO {
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistencia");
     private EntityManager em = factory.createEntityManager();
 
-    public Agente getUsuario(String nomeAgente, String senha) {
+    public Agente getAgente(String nomeAgente, String senha) {
         try {
             Agente agente = (Agente) em.createQuery("SELECT u from Agente u where u.nome = :nome and u.senha = :senha").setParameter("nome", nomeAgente).setParameter("senha", senha).getSingleResult();
             return agente;
