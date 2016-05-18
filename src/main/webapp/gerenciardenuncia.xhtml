@@ -31,32 +31,28 @@
     <h:body> 
         <h:form> 
             <div id ="container">
-                <h1>Criar Novo Usuário</h1>
+                <h1>Criar Nova Denúncia</h1>
                 <p:messages id="messages" /> 
                 <p:panelGrid columns="2" style="margin-left:auto;margin-right:auto;"> 
-                    <p:outputLabel for="nomeUsuario" value="Nome Usuário:" /> 
-                    <p:inputText id="nomeUsuario" value="#{usuarioController.usuario.nome}" /> 
+                    <p:outputLabel for="dataDenuncia" value="Data:" /> 
+                    <p:inputText id="dataDenuncia" value="#{denunciaController.denuncia.data_den}" /> 
 
-                    <p:outputLabel for="cpfUsuario" value="CPF:" /> 
-                    <p:inputText id="cpfUsuario" value="#{usuarioController.usuario.cpf}" /> 
+                    <p:outputLabel for="cepDenuncia" value="CEP" /> 
+                    <p:inputText id="cepDenuncia" value="#{denunciaController.denuncia.cep}" /> 
 
-                    <p:outputLabel for="emailUsuario" value="email" /> 
-                    <p:inputText id="emailUsuario" value="#{usuarioController.usuario.email}" /> 
+                    <p:outputLabel for="ruaDenuncia" value="Rua" /> 
+                    <p:inputText id="ruaDenuncia" value="#{denunciaController.denuncia.rua}" /> 
 
-                    <p:outputLabel for="cepUsuario" value="CEP" /> 
-                    <p:inputText id="cepUsuario" value="#{usuarioController.usuario.cep}" /> 
+                    <p:outputLabel for="cidadeDenuncia" value="Cidade" /> 
+                    <p:inputText id="cidadeDenuncia" value="#{denunciaController.denuncia.cidade}" /> 
 
-                    <p:outputLabel for="ruaUsuario" value="Rua" /> 
-                    <p:inputText id="ruaUsuario" value="#{usuarioController.usuario.rua}" /> 
+                    <p:outputLabel for="estadoDenuncia" value="Estado" /> 
+                    <p:inputText id="estadoDenuncia" value="#{denunciaController.denuncia.estado}" /> 
+                    
+                    <p:outputLabel for="descricaoDenuncia" value="Descriçao:" /> 
+                    <p:inputTextarea id="descricaoDenuncia" rows="4" cols="50" value="#{denunciaController.denuncia.descricao}" /> 
 
-                    <p:outputLabel for="cidadeUsuario" value="Cidade" /> 
-                    <p:inputText id="cidadeUsuario" value="#{usuarioController.usuario.cidade}" /> 
-
-                    <p:outputLabel for="estadoUsuario" value="Estado" /> 
-                    <p:inputText id="estadoUsuario" value="#{usuarioController.usuario.estado}" /> 
-
-                    <p:outputLabel for="senha" value="Senha:" /> <p:password id="senha" value="#{usuarioController.usuario.senha}" /> 
-                    <p:commandButton value="Salvar" icon="ui-icon-star" action="#{usuarioController.salvarUsuario}" ajax="false">
+                    <p:commandButton value="Salvar" icon="ui-icon-star" action="#{denunciaController.salvarDenuncia}" ajax="false">
                     </p:commandButton> 
                 </p:panelGrid> 
             </div>

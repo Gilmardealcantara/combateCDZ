@@ -34,15 +34,17 @@ public class DenunciaController {
         return denuncias;
     }
 
-    public String prepararAdicionarDenuncias() {
+    public String prepararAdicionarDenuncia() {
         setDenuncia(new Denuncia());
-        return "gerenciarDenuncia";
+        return "gerenciardenuncia";
     }
     
     public String salvarDenuncia() {
+        denuncia.setStatus_den("Pendente");
+        
         DenunciaDAO u = new DenunciaDAO();
         u.inserirDenuncia(this.getDenuncia());
-        return "visualizardenuncias";
+        return "visualizardenuncia";
     }
     
     public String excluirDenuncia(int ID) {

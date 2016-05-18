@@ -26,75 +26,72 @@
 
 
     </header>
-    
     <h:body>
         <div id ="container">
-        <h:form>
-            <h:commandLink value="Novo Agente" action="#{agenteController.prepararAdicionarAgente}"/>
-        </h:form>
-        <h:dataTable var="agente" style="margin-left:auto;margin-right:auto;" value="#{agenteController.agentes}">
+        <br></br>    
+        <h:dataTable var="denuncia" style="margin-left:auto;margin-right:auto;" value="#{denunciaController.denuncias}">
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="ID"/>
+                    <h:outputText value="Status"/>
                 </f:facet>
-                <h:outputText value="#{agente.id}" />
+                <h:outputText value="#{denuncia.status_den}" />
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Nome"/>
+                    <h:outputText value="Número de Apoio"/>
                 </f:facet>
-                <h:outputText value="#{agente.nome}" />
+                <h:outputText value="#{denuncia.num_apoio }" />
             </h:column>
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="CPF"/>
+                    <h:outputText value="Data"/>
                 </f:facet>
-                <h:outputText value="#{agente.cpf}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Email"/>
-                </f:facet>
-                <h:outputText value="#{agente.email}" />
+                <h:outputText value="#{denuncia.data_den }" />
             </h:column>
             
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Contratante"/>
+                    <h:outputText value="Descrição"/>
                 </f:facet>
-                <h:outputText value="#{agente.contratante}" />
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="PIS"/>
-                </f:facet>
-                <h:outputText value="#{agente.pis}" />
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Região"/>
-                </f:facet>
-                <h:outputText value="#{agente.regiao}" />
-            </h:column>
+                <h:outputText value="#{denuncia.descricao}" />
+            </h:column>  
 
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Alterar"/>
+                    <h:outputText value="Resposta"/>
                 </f:facet>
-                <h:form>
-                    <h:commandButton action="#{agenteController.prepararAlterarAgente(agente)}" value="Alterar"/>
-                    </h:form>
-            </h:column>
+                <h:outputText value="#{denuncia.resposta}" />
+            </h:column>  
+
+
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Excluir"/>
+                    <h:outputText value="CEP"/>
                 </f:facet>
-                <h:form>
-                    <h:commandButton action="#{agenteController.excluirAgente(agente.id)}" value="Excluir"/>
-                    </h:form>
+                <h:outputText value="#{denuncia.cep}" />
             </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Rua"/>
+                </f:facet>
+                <h:outputText value="#{denuncia.rua}" />
+            </h:column>            
+         
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Cidade"/>
+                </f:facet>
+                <h:outputText value="#{denuncia.cidade}" />
+            </h:column>            
+         
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Estado"/>
+                </f:facet>
+                <h:outputText value="#{denuncia.estado}" />
+            </h:column>            
+         
             
         </h:dataTable>
         </div>
