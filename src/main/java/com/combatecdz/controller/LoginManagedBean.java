@@ -16,7 +16,6 @@ import com.combatecdz.model.Usuario;
 @ManagedBean(name = "LoginMB")
 @ViewScoped
 public class LoginManagedBean {
-//Não é possível criar instância para·a classe: com.combatecdz.controller.LoginManagedBean.
     private UsuarioDAO usuarioDAO = new UsuarioDAO();
     private Usuario usuario = new Usuario();
 
