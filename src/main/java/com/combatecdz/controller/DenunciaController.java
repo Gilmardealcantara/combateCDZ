@@ -34,6 +34,12 @@ public class DenunciaController {
         return denuncias;
     }
 
+    public DataModel getDenunciasUsuario(int id) {
+        List<Denuncia> lista = new DenunciaDAO().getTodasDenunciasUsuario(id);
+        denuncias = new ListDataModel(lista);
+        return denuncias;
+    }
+    
     public String prepararAdicionarDenuncia() {
         setDenuncia(new Denuncia());
         return "gerenciardenuncia";

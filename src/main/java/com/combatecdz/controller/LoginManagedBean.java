@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import com.combatecdz.dao.UsuarioDAO;
 import com.combatecdz.model.Usuario;
 
+
 @ManagedBean(name = "LoginMB")
 @ViewScoped
 public class LoginManagedBean {
@@ -26,7 +27,8 @@ public class LoginManagedBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
             return null;
         } else {
-            return "/main";
+            
+            return "/cidadao";
         }
     }
 
