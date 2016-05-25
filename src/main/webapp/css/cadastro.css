@@ -81,3 +81,15 @@ form button{
 	margin-left: 50px;
 	margin-right: 50px;
 }
+
+#container_login{
+	background: #CAE1FF;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
+	border-style: solid;
+	border-width: 1.5px;
+	margin-left: 50px;
+	margin-right: 50px;
+}

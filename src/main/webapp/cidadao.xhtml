@@ -30,13 +30,91 @@
     <h:body>
         <div id ="container">
         <h:form>
-            <h:commandLink value="Nova Denuncia" action="#{denunciaController.prepararAdicionarDenuncia}"/>
-        </h:form>
-        <p:outputLabel for="cpfUsuario" value="Nome" /> 
-       <p:inputText id="cpfUsuario" value="#{usuarioController.usuario.nome}" />
-            
-        </div>
-    </h:body>
+            <h:commandLink value="Nova Denuncia" action="#{denunciaController.prepararAdicionarDenuncia()}"/>
+        </h:form>   
+        
+        <h:dataTable var="denuncia" style="margin-left:auto;margin-right:auto;" value="#{denunciaController.getDenunciasUsuario(denunciaController.usuario.id)}">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.id}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Status"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.status_den}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Número de Apoio"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.num_apoio }" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.data_den }" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descrição"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.descricao}" />
+                </h:column>  
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Resposta"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.resposta}" />
+                </h:column>  
+
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="CEP"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.cep}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Rua"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.rua}" />
+                </h:column>            
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cidade"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.cidade}" />
+                </h:column>            
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Estado"/>
+                    </f:facet>
+                    <h:outputText value="#{denuncia.estado}" />
+                </h:column>            
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Excluir"/>
+                    </f:facet>
+                    <h:form>
+                        <h:commandButton action="#{denunciaController.excluirDenuncia(denuncia.id)}" value="Excluir"/>
+                        </h:form>
+                </h:column>
+
+            </h:dataTable>
+            </div>
+        </h:body>
+    
     
    <footer>
        <img src="http://www.ebm.cefetmg.br/download/CEFET_nome.gif"></img>

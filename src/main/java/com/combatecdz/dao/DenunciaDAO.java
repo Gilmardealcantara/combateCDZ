@@ -49,8 +49,8 @@ public class DenunciaDAO {
         return em.createQuery("from Denuncia d", Denuncia.class).getResultList();        
     }
     
-    public List<Denuncia> getTodasDenunciasUsuario(int id) {        
-        return em.createQuery("from Denuncia d where i="+String.valueOf(id), Denuncia.class).getResultList();        
+    public List<Denuncia> getTodasDenunciasUsuario(int id) {
+        return em.createQuery("from Denuncia d where d.id_cid=:id", Denuncia.class).setParameter("id", id).getResultList();        
     }    
     
     

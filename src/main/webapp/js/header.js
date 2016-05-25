@@ -6,6 +6,7 @@
 
 document.getElementById('b1').addEventListener('click', function(){
    window.location.pathname = "/combateCDZ/login.xhtml";  
+   
 });
 
 document.getElementById('b2').addEventListener('click', function(){

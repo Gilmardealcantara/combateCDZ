@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import com.combatecdz.dao.UsuarioDAO;
 import com.combatecdz.model.Usuario;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @ManagedBean(name = "LoginMB")
@@ -26,7 +28,9 @@ public class LoginManagedBean {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário não encontrado!", "Erro no Login!"));
             return null;
         } else {
-            
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            HttpSession session = request.getSession();
+            session.setAttribute("usuario", usuario);
             return "/cidadao";
         }
     }

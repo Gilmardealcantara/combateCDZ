@@ -7,6 +7,7 @@ package com.combatecdz.controller;
 
 import com.combatecdz.dao.DenunciaDAO;
 import com.combatecdz.model.Denuncia;
+import com.combatecdz.model.Usuario;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +17,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,45 +30,61 @@ public class DenunciaController {
 
     private Denuncia denuncia;
     private DataModel denuncias;
+    private DataModel denunciasUsuario;
+
+    public Usuario getUsuario() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        
+        System.out.println("nome: " + u.getNome());
+        return u;
+    }
 
     public DataModel getDenuncias() {
         List<Denuncia> lista = new DenunciaDAO().getTodasDenuncias();
         denuncias = new ListDataModel(lista);
         return denuncias;
     }
+    
+    
 
     public DataModel getDenunciasUsuario(int id) {
         List<Denuncia> lista = new DenunciaDAO().getTodasDenunciasUsuario(id);
-        denuncias = new ListDataModel(lista);
-        return denuncias;
+        denunciasUsuario = new ListDataModel(lista);
+        return denunciasUsuario;
     }
-    
+
     public String prepararAdicionarDenuncia() {
         setDenuncia(new Denuncia());
         return "gerenciardenuncia";
     }
-    
+
+    public String prepararCidadao() {
+        return "cidadao";
+    }
+
     public String salvarDenuncia() {
         denuncia.setStatus_den("Pendente");
         
+        denuncia.setId_cid(this.getUsuario().getId());
+        
         DenunciaDAO u = new DenunciaDAO();
         u.inserirDenuncia(this.getDenuncia());
-        return "visualizardenuncia";
+        return "cidadao";
     }
-    
+
     public String excluirDenuncia(int ID) {
         DenunciaDAO u = new DenunciaDAO();
         //u.deletarDenuncia(this.getDenuncia());
         u.deletarDenuncia(ID);
         return "visualizardenucia";
     }
-    
+
     public String prepararAlterarDenuncia(Denuncia den) {
         setDenuncia(den);
         return "alterarDenuncia";
     }
-
-
 
     public String alterarDenuncia() {
         Denuncia alt = new Denuncia();
@@ -82,20 +101,17 @@ public class DenunciaController {
         alt.setId_cid(denuncia.getId_cid());
         alt.setId_ag(denuncia.getId_ag());
 
-
         DenunciaDAO u = new DenunciaDAO();
         u.deletarDenuncia(denuncia.getId());
         u.inserirDenuncia(alt);
         return "visualizarcidadao";
     }
 
-    
-    
     public Denuncia getDenuncia() {
         return denuncia;
     }
 
     public void setDenuncia(Denuncia denuncia) {
         this.denuncia = denuncia;
-    }  
+    }
 }
