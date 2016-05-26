@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>CDZ</title>
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/header.css">
+
+    </head>
+
+    <body>
+
+        <header>
+
+            <img id="img1" src='http://www.interne.com.br/novidades/images/fotos_materias/Dengue-aplicativo-paulista301215f1.jpg'>
+
+            <h1>Combate CDZ</h1>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="listartodasdenuncias.xhtml">Listar Denúncias</a>
+                <a href="">Denunciar</a>
+                <a href="graficoGeral.html">Estatísticas por Caso</a>
+                <a href="">Estatísticas por Denúncia</a>
+            </nav>
+
+            <input type="button" class="button" value="Login" id="b1"></input>
+            <input type="button" class="button" value="Cadastro" id="b2"></input>
+        </header>
+
+
+        <div id ="container">
+
+            <h2>Casos de Dengue no Brasil em 2014 por Estado</h2>
+
+            <div id="viz"></div>
+
+
+            <h6>Fonte: http://portalsaude.saude.gov.br/images/pdf/2015/julho/29/Dengue-at---2014.pdf</h6>
+        </div>
+
+
+        <footer>
+            <img src="http://www.ebm.cefetmg.br/download/CEFET_nome.gif">
+        </footer>
+        <script src="js/header.js"></script>
+        <!-- load D3js -->
+        <script src="http://www.d3plus.org/js/d3.js"></script>
+
+        <!-- load D3plus after D3js -->
+        <script src="http://www.d3plus.org/js/d3plus.js"></script>
+        <script>
+            // sample data array
+            var sample_data = [
+                {"value": 1985, "name": "Rondônia"},
+                {"value": 28269, "name": "Acre"},
+                {"value": 6661, "name": "Amazonas"},
+                {"value": 1123, "name": "Roraima"},
+                {"value": 4496, "name": "Pará"},
+                {"value": 2190, "name": "Amapá"},
+                {"value": 3652, "name": "Tocantins"},
+                {"value": 2652, "name": "Maranhāo"},
+                {"value": 7657, "name": "Piauí"},
+                {"value": 22756, "name": "Ceará"},
+                {"value": 11498, "name": "Rio Grande do Norte"},
+                {"value": 5625, "name": "Paraíba"},
+                {"value": 10488, "name": "Pernambuco"},
+                {"value": 13186, "name": "Alagoas"},
+                {"value": 2246, "name": "Sergipe"},
+                {"value": 13827, "name": "Bahia"},
+                {"value": 58177, "name": "Minas Gerais"},
+                {"value": 18879, "name": "Espírito Santo"},
+                {"value": 7717, "name": "Rio de Janeiro"},
+                {"value": 226866, "name": "Sāo Paulo"},
+                {"value": 22701, "name": "Paraná"},
+                {"value": 134, "name": "Santa Catarina"},
+                {"value": 153, "name": "Rio Grande do Sul"},
+                {"value": 3423, "name": "Mato Grosso do Sul"},
+                {"value": 7160, "name": "Mato Grosso"},
+                {"value": 93929, "name": "Goiás"},
+                {"value": 11657, "name": "Distrito Federal"},
+            ]
+            // instantiate d3plus
+            var visualization = d3plus.viz()
+                    .container("#viz")  // container DIV to hold the visualization
+                    .data(sample_data)  // data to use with the visualization
+                    .type("tree_map")   // visualization type
+                    .id("name")         // key for which our data is unique on
+                    .size("value")      // sizing of blocks
+                    .draw()             // finally, draw the visualization!
+        </script>
+
+    </body>
+</html>
+
