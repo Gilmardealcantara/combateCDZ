@@ -85,11 +85,11 @@ public class DenunciaController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
             return null;
         }
-        if (denuncia.getEstado().length() != 2) {
+        if (Pattern.matches("[a-zA-Z][a-zA-Z]", denuncia.getEstado()) == false || denuncia.getEstado().length() != 2) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
                 flag = 1;
             }
-        if (denuncia.getCep().length() != 8) {
+        if (Pattern.matches("[0-9]+", denuncia.getCep()) == false || denuncia.getCep().length() != 8) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
                 flag = 1;
         }

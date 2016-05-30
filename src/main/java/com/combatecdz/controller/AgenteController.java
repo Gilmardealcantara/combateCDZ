@@ -48,8 +48,12 @@ public class AgenteController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
             return null;
         } else {
-            if (agente.getCpf().length() != 11) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+            if (Pattern.matches("[0-9]+", agente.getCpf()) == false || agente.getCpf().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido, apenas números permitidos", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (Pattern.matches("[0-9]+", agente.getPis()) != false || agente.getPis().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PIS Inválido, apenas números permitidos", "Erro no Cadastro!"));
                 flag = 1;
             }
             String email = agente.getEmail();
@@ -100,8 +104,12 @@ public class AgenteController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
             return null;
         } else {
-            if (alt.getCpf().length() != 11) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+            if (Pattern.matches("[0-9]+", alt.getCpf()) == false || alt.getCpf().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido, apenas números permitidos", "Erro no Cadastro!"));
+                flag = 1;
+            }
+            if (Pattern.matches("[0-9]+", alt.getPis()) != false || alt.getPis().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PIS Inválido, apenas números permitidos", "Erro no Cadastro!"));
                 flag = 1;
             }
             String email = alt.getEmail();

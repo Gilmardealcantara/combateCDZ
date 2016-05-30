@@ -47,15 +47,15 @@ public class UsuarioController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
             return null;
         } else {
-            if (usuario.getCpf().length() != 11) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+            if (Pattern.matches("[0-9]+", usuario.getCpf()) == false || usuario.getCpf().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido, apenas números permitidos", "Erro no Cadastro!"));
                 flag = 1;
             }
-            if (usuario.getEstado().length() != 2) {
+            if (Pattern.matches("[a-zA-Z][a-zA-Z]", usuario.getEstado()) == false || usuario.getEstado().length() != 2) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
                 flag = 1;
             }
-            if (usuario.getCep().length() != 8) {
+            if (Pattern.matches("[0-9]+", usuario.getCep()) == false || usuario.getCep().length() != 8) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
                 flag = 1;
             }
@@ -69,7 +69,8 @@ public class UsuarioController {
             }
             if (flag == 1) {
                 return null;
-            } else {
+            }
+            else {
                 UsuarioDAO u = new UsuarioDAO();
                 u.inserirUsuario(this.getUsuario());
                 return "visualizarcidadao";
@@ -110,15 +111,15 @@ public class UsuarioController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
             return null;
         } else {
-            if (alt.getCpf().length() != 11) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido", "Erro no Cadastro!"));
+            if (Pattern.matches("[0-9]+", alt.getCpf()) == false || alt.getCpf().length() != 11) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido, apenas números permitidos", "Erro no Cadastro!"));
                 flag = 1;
             }
-            if (alt.getEstado().length() != 2) {
+            if (Pattern.matches("[a-zA-Z][a-zA-Z]", alt.getEstado()) == false || alt.getEstado().length() != 2) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
                 flag = 1;
             }
-            if (alt.getCep().length() != 8) {
+            if (Pattern.matches("[0-9]+", alt.getCep()) == false || alt.getCep().length() != 8) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CEP Inválido", "Erro no Cadastro!"));
                 flag = 1;
             }
