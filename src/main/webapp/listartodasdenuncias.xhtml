@@ -90,8 +90,16 @@
                     <h:outputText value="Estado"/>
                 </f:facet>
                 <h:outputText value="#{denuncia.estado}" />
-            </h:column>            
-         
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Apoiar"/>
+                </f:facet>
+                <h:form>
+                        <h:commandButton action="#{denunciaController.apoio(denuncia)}" value="Apoio"/>
+                </h:form>
+            </h:column>
+
             
         </h:dataTable>
         </div>
