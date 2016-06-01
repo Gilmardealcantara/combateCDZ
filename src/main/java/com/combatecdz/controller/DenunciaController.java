@@ -114,25 +114,10 @@ public class DenunciaController {
         return "alterarDenuncia";
     }
 
-    public String alterarDenuncia() {
-        Denuncia alt = new Denuncia();
-        alt.setId(denuncia.getId());
-        alt.setStatus_den(denuncia.getStatus_den());
-        alt.setNum_apoio(denuncia.getNum_apoio());
-        alt.setData_den(denuncia.getData_den());
-        alt.setDescricao(denuncia.getDescricao());
-        alt.setResposta(denuncia.getResposta());
-        alt.setCep(denuncia.getCep());
-        alt.setRua(denuncia.getRua());
-        alt.setCidade(denuncia.getCidade());
-        alt.setEstado(denuncia.getEstado());
-        alt.setId_cid(denuncia.getId_cid());
-        alt.setId_ag(denuncia.getId_ag());
-
+    public String responderDenuncia() {
         DenunciaDAO u = new DenunciaDAO();
-        u.deletarDenuncia(denuncia.getId());
-        u.inserirDenuncia(alt);
-        return "visualizarcidadao";
+        u.alterarResposta(denuncia.getId(), denuncia.getResposta(), denuncia.getStatus_den());
+        return "agente";
     }
 
     public Denuncia getDenuncia() {
@@ -150,5 +135,10 @@ public class DenunciaController {
         u.deletarDenuncia(d.getId());
         u.inserirDenuncia(this.denuncia);
         return "listartodasdenuncias";
+    }
+    
+    public String prepararResponderDenuncia(Denuncia d) {
+        setDenuncia(d);
+        return "responderDenuncia";
     }
 }

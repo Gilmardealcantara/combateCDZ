@@ -52,7 +52,7 @@ public class AgenteController {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "CPF Inválido, apenas números permitidos", "Erro no Cadastro!"));
                 flag = 1;
             }
-            if (Pattern.matches("[0-9]+", agente.getPis()) != false || agente.getPis().length() != 11) {
+            if (Pattern.matches("[0-9]+", agente.getPis()) == false || agente.getPis().length() != 11) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "PIS Inválido, apenas números permitidos", "Erro no Cadastro!"));
                 flag = 1;
             }

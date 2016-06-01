@@ -89,7 +89,6 @@ public class UsuarioController {
     public String prepararAlterarUsuario(Usuario us) {
         setUsuario(us);
         return "alterarUsuario";
-
     }
 
     public String alterarUsuario() {

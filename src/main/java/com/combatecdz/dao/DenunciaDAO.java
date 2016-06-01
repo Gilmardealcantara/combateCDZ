@@ -36,15 +36,27 @@ public class DenunciaDAO {
             Denuncia d = em.find(Denuncia.class, Id);
             em.remove(d);
             em.getTransaction().commit();
-            System.out.println("teste2");
             return true;
         } catch (Exception e) {
-            System.out.println("teste1");
             e.printStackTrace();
             return false;
         }
     }
 
+    public boolean alterarResposta(int Id, String resposta, String status) {
+         try {
+            em.getTransaction().begin();
+            Denuncia d = em.find(Denuncia.class, Id);
+            d.setResposta(resposta);
+            d.setStatus_den(status);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }       
+    }
+    
     public List<Denuncia> getTodasDenuncias() {        
         return em.createQuery("from Denuncia d", Denuncia.class).getResultList();        
     }
