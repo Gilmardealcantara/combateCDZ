@@ -12,7 +12,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
@@ -23,6 +25,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.primefaces.json.JSONObject;
 
 /**
  *
@@ -34,6 +37,7 @@ public class DenunciaController {
 
     private Denuncia denuncia;
     private DataModel denuncias;
+    private DataModel denuncias_loc;
     private DataModel denunciasUsuario;
 
     public Usuario getUsuario() {
@@ -51,7 +55,24 @@ public class DenunciaController {
         return denuncias;
     }
     
-    
+    public DataModel getTodasDenunciasLocalizacao() {
+        List<Denuncia> lista = new DenunciaDAO().getTodasDenuncias();
+        String s="";
+        Map<String, Integer> mapa = new HashMap<String, Integer>();
+        JSONObject json = new JSONObject();
+        for( Denuncia d : lista){
+ 
+            int count = mapa.containsKey(d.getEstado()) ? mapa.get(d.getEstado()) : 0;
+            mapa.put(d.getEstado(), count + 1);
+            json.put(d.getEstado(), count + 1);
+        }
+        System.out.printf( "JSON: %s", json.toString(2) );
+        
+        System.out.println(mapa);
+        denuncias_loc = new ListDataModel(lista);
+
+        return denuncias_loc;
+    }
 
     public DataModel getDenunciasUsuario(int id) {
         List<Denuncia> lista = new DenunciaDAO().getTodasDenunciasUsuario(id);

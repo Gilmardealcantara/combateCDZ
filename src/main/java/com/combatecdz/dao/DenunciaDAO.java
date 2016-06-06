@@ -11,6 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import com.combatecdz.model.Denuncia;
 import java.util.List;
+import javax.persistence.Query;
 
 public class DenunciaDAO {
 
@@ -60,6 +61,7 @@ public class DenunciaDAO {
     public List<Denuncia> getTodasDenuncias() {        
         return em.createQuery("from Denuncia d", Denuncia.class).getResultList();        
     }
+   
     
     public List<Denuncia> getTodasDenunciasUsuario(int id) {
         return em.createQuery("from Denuncia d where d.id_cid=:id", Denuncia.class).setParameter("id", id).getResultList();        
