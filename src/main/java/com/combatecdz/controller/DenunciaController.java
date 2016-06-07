@@ -38,7 +38,9 @@ public class DenunciaController {
     private Denuncia denuncia;
     private DataModel denuncias;
     private DataModel denuncias_loc;
+    private String denuncias_json;
     private DataModel denunciasUsuario;
+    List<JSONObject> json_list = null;
 
     public Usuario getUsuario() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -55,35 +57,44 @@ public class DenunciaController {
         return denuncias;
     }
     
-    public DataModel getTodasDenunciasLocalizacao() {
+    public String getJson() {
         List<Denuncia> lista = new DenunciaDAO().getTodasDenuncias();
         String s="";
         Map<String, Integer> mapa = new HashMap<String, Integer>();
-        JSONObject json = new JSONObject();
-        for( Denuncia d : lista){
- 
-            int count = mapa.containsKey(d.getEstado()) ? mapa.get(d.getEstado()) : 0;
-            mapa.put(d.getEstado(), count + 1);
-            json.put(d.getEstado(), count + 1);
+        //JSONObject json = new JSONObject();
+        for(int i = 0; i < lista.size(); i++){
+        //for( Denuncia d : lista){
+            int count = mapa.containsKey(lista.get(i).getEstado()) ? mapa.get(lista.get(i).getEstado()) : 0;
+            //"value": 1985, "name": "Rondônia"
+            mapa.put(lista.get(i).getEstado(), count + 1);
+            JSONObject json = new JSONObject();
+            json.put("value", count + 1);
+            json.put("name", lista.get(i).getEstado());
+            json_list.add(json);
         }
-        System.out.printf( "JSON: %s", json.toString(2) );
+        System.out.printf( "JSON: %s", json_list );
         
-        System.out.println(mapa);
         denuncias_loc = new ListDataModel(lista);
-
-        return denuncias_loc;
+        
+        return null;
     }
 
+    public String grafico() {
+        return "graficoCDZ";
+    }
+    
+    public String prepararAdicionarDenuncia() {
+        setDenuncia(new Denuncia());
+        return "gerenciardenuncia";
+    }
+    
+    
     public DataModel getDenunciasUsuario(int id) {
         List<Denuncia> lista = new DenunciaDAO().getTodasDenunciasUsuario(id);
         denunciasUsuario = new ListDataModel(lista);
         return denunciasUsuario;
     }
 
-    public String prepararAdicionarDenuncia() {
-        setDenuncia(new Denuncia());
-        return "gerenciardenuncia";
-    }
 
     public String prepararCidadao() {
         return "cidadao";

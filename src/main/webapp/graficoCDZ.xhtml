@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:p="http://primefaces.org/ui"> 
+
+    <h:head> 
+        <link rel="stylesheet" href="css/footer.css"></link>
+        <link rel="stylesheet" href="css/header.css"></link>
+        <link rel="stylesheet" href="css/home.css"></link>
+    </h:head> 
+    <header>
+
+        <img id="img1" src='http://www.interne.com.br/novidades/images/fotos_materias/Dengue-aplicativo-paulista301215f1.jpg'>
+        </img>
+        <h1>Combate CDZ</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="listartodasdenuncias.xhtml">Listar Denúncias</a>
+            <a href="">Denunciar</a>
+            <a href="graficoGeral.html">Estatísticas por Caso</a>
+            <a href="">Estatísticas por Denúncia</a>
+        </nav>
+
+        <button type="button" class="button" id="b1">Login</button>
+
+    </header>
+    <body> 
+       <div id ="container">
+            <h2>Casos de Dengue Registrados no CombateCDZ</h2>
+
+            <div id="viz"></div>
+        </div>
+        
+        <!-- load D3js -->
+        <script src="http://www.d3plus.org/js/d3.js"></script>
+
+        <!-- load D3plus after D3js -->
+        <script src="http://www.d3plus.org/js/d3plus.js"></script>
+        
+        <div id="grafico"> </div>
+        <script type="text/javascript" > 
+            debugger;
+          var sample_data = #{denunciaController};
+            var visualization = d3plus.viz()
+                    .container("#viz")  // container DIV to hold the visualization
+                    .data(sample_data)  // data to use with the visualization
+                    .type("tree_map")   // visualization type
+                    .id({"value":["name", "value"]})         // key for which our data is unique on
+                    .size("value")      // sizing of blocks
+                    .draw()             // finally, draw the visualization!
+
+        </script>
+        
+    </body>
+    <footer>
+        <img src="http://www.ebm.cefetmg.br/download/CEFET_nome.gif"></img>
+    </footer>
+    <script>
+        document.getElementById('b1').addEventListener('click', function () {
+            window.location.pathname = "/combateCDZ/login.xhtml";
+        });
+    </script>
+</html>
+
