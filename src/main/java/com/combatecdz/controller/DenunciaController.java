@@ -10,11 +10,14 @@ import com.combatecdz.model.Denuncia;
 import com.combatecdz.model.Usuario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
@@ -38,9 +41,41 @@ public class DenunciaController {
     private Denuncia denuncia;
     private DataModel denuncias;
     private DataModel denuncias_loc;
+
+    public DataModel getDenuncias_loc() {
+        return denuncias_loc;
+    }
+
+    public void setDenuncias_loc(DataModel denuncias_loc) {
+        this.denuncias_loc = denuncias_loc;
+    }
+
+    public String getDenuncias_json() {
+        return denuncias_json;
+    }
+
+    public void setDenuncias_json(String denuncias_json) {
+        this.denuncias_json = denuncias_json;
+    }
+
+    public DataModel getDenunciasUsuario() {
+        return denunciasUsuario;
+    }
+
+    public void setDenunciasUsuario(DataModel denunciasUsuario) {
+        this.denunciasUsuario = denunciasUsuario;
+    }
+
+    public List<JSONObject> getJson_list() {
+        return json_list;
+    }
+
+    public void setJson_list(List<JSONObject> json_list) {
+        this.json_list = json_list;
+    }
     private String denuncias_json;
-    private DataModel denunciasUsuario;
-    List<JSONObject> json_list = null;
+    public DataModel denunciasUsuario;
+    List<JSONObject> json_list = new ArrayList<JSONObject>();
 
     public Usuario getUsuario() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -57,31 +92,69 @@ public class DenunciaController {
         return denuncias;
     }
     
-    public String getJson() {
+    
+    public Map<String, String> mapaIinit(){
+        Map<String, String> mapa = new HashMap<String, String>();
+        mapa.put("RO","Rondônia");
+        mapa.put("AC","Acre");
+        mapa.put("AM","Amazonas");
+        mapa.put("RR","Roraima");
+        mapa.put("PA","Pará");
+        mapa.put("AP","Amapá");
+        mapa.put("TO","Tocantins");
+        mapa.put("MA","Maranhāo");
+        mapa.put("PI","Piauí");
+        mapa.put("CE","Ceará");
+        mapa.put("RN","Rio Grande do Norte");
+        mapa.put("PB","Paraíba");
+        mapa.put("PE","Pernambuco");
+        mapa.put("AL","Alagoas");
+        mapa.put("SE","Sergipe");
+        mapa.put("BA","Bahia");
+        mapa.put("MG","Minas Gerais");
+        mapa.put("ES","Espírito Santo");
+        mapa.put("RJ","Rio de Janeiro");
+        mapa.put("SP","Sāo Paulo");
+        mapa.put("PR","Paraná");
+        mapa.put("SC","Santa Catarina");
+        mapa.put("RS","Rio Grande do Sul");
+        mapa.put("MS","Mato Grosso do Sul");
+        mapa.put("MT","Mato Grosso");
+        mapa.put("GO","Goiás");
+        mapa.put("DF","Distrito Federal");
+      
+        return mapa;
+    }
+    
+    public String grafico() {
         List<Denuncia> lista = new DenunciaDAO().getTodasDenuncias();
         String s="";
+        
+        //query
+        //List<String> lista = Arrays.asList("MG1", "MG2", "MG3", "MG1", "MG2", "MG3", "MG1", "MG2", "MG3", "MG1", "MG2", "SP3", "SP1", "SP2", "SP3", "SP1", "SP2", "SP3", "SP1", "SP2", "SP3", "SP1", "SP2", "SP3", "MG1", "MG2", "MG3", "MG1", "MG2", "RO3", "RO1", "RO2", "RO3", "RO1", "RO2", "RO3", "RO1", "RO2", "RO3", "RO1", "RO2", "RO3", "RO1", "RO2", "AM3", "AM1", "AM2", "AM3", "AM1", "AM2", "AM3", "AM1", "AM2", "AM3", "AM1", "AM2", "AM3", "AM1", "AM2", "AM3");
         Map<String, Integer> mapa = new HashMap<String, Integer>();
-        //JSONObject json = new JSONObject();
+        Map<String, String> mapa2  =  mapaIinit();
+        //faz calculos no mapa
         for(int i = 0; i < lista.size(); i++){
-        //for( Denuncia d : lista){
             int count = mapa.containsKey(lista.get(i).getEstado()) ? mapa.get(lista.get(i).getEstado()) : 0;
-            //"value": 1985, "name": "Rondônia"
+            //int count = mapa.containsKey(lista.get(i)) ? mapa.get(lista.get(i)) : 0;
             mapa.put(lista.get(i).getEstado(), count + 1);
-            JSONObject json = new JSONObject();
-            json.put("value", count + 1);
-            json.put("name", lista.get(i).getEstado());
-            json_list.add(json);
         }
-        System.out.printf( "JSON: %s", json_list );
         
-        denuncias_loc = new ListDataModel(lista);
-        
-        return null;
-    }
-
-    public String grafico() {
+        //cria jason
+        Set<String> chaves = mapa.keySet();
+        for(String chave : chaves ){
+            //System.out.println(chave +" : "+ mapa.get(chave));
+            JSONObject json = new JSONObject();
+            json.put("value", mapa.get(chave));
+            json.put("name", mapa2.get(chave));
+            this.json_list.add(json);
+            System.out.printf( "JSON: %s\n", json.toString());
+        }
+        System.out.printf( "JSON: %s", this.json_list);
         return "graficoCDZ";
     }
+
     
     public String prepararAdicionarDenuncia() {
         setDenuncia(new Denuncia());
@@ -117,7 +190,7 @@ public class DenunciaController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Todos os campos sāo obrigatórios", "Erro no Cadastro!"));
             return null;
         }
-        if (Pattern.matches("[a-zA-Z][a-zA-Z]", denuncia.getEstado()) == false || denuncia.getEstado().length() != 2) {
+        if (Pattern.matches("[A-Z][A-Z]", denuncia.getEstado()) == false || denuncia.getEstado().length() != 2) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Estado Inválido", "Erro no Cadastro!"));
                 flag = 1;
             }
